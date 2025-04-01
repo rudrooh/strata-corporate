@@ -1,69 +1,82 @@
-import { FaBuilding as BuildingIcon } from "react-icons/fa"; // Importing the building icon from react-icons
-import { FaMoneyBillWave as PaymentIcon } from "react-icons/fa"; // Importing payment icon
+import { useState } from "react"; // Import React hook for state management
 
+// ActionCardProps Interface for Login Card (reused as needed)
 interface ActionCardProps {
-  icon: JSX.Element;
   title: string;
   description: string;
-  href: string;
   bgColor: string;
   textColor: string;
 }
 
-// Retrieve payment URL from environment variables
-const PAYMENT_URL = process.env.NEXT_PUBLIC_PAYMENT_URL || "/payments";
-
-// ActionCard component for reusable quick action cards
-function ActionCard({ icon, title, description, href, bgColor, textColor }: ActionCardProps) {
+// ActionCard component for reusable cards (updated for login)
+function ActionCard({ title, description, bgColor, textColor }: ActionCardProps) {
   return (
-    <a href={href} className={`p-6 rounded-lg shadow-md ${bgColor} ${textColor} flex flex-col items-center text-center`}>
-      <div className="mb-4">{icon}</div>
+    <div className={`p-6 rounded-lg shadow-md ${bgColor} ${textColor} flex flex-col items-center text-center`}>
       <h3 className="text-xl font-semibold">{title}</h3>
       <p className="text-sm mt-2">{description}</p>
-    </a>
+    </div>
   );
 }
 
-// Defining the Home component, which is the main part of the application
+// Defining the Home component
 export default function Home() {
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  // Handle form submission to check password
+  const handleLogin = async (event: React.FormEvent) => {
+    event.preventDefault();
+    
+    // Mock password validation for illustration (replace with real API call)
+    if (password === "securePassword") {
+      // Redirect or show message if password is correct
+      alert("Login successful! Redirecting to payment section...");
+      window.location.href = "/payment"; // Example of redirect to the payment page
+    } else {
+      // Show error if password is incorrect
+      setErrorMessage("Invalid password. Please try again.");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-8 pb-20 font-sans">
-      {/* Outer div with minimum height, background color, padding, and font style */}
       <main className="max-w-4xl mx-auto">
-        {/* Main content area with max width and centered */}
-
         {/* Header Section */}
         <header className="flex flex-col items-center mb-12">
-          {/* Header with flexbox for vertical alignment */}
           <div className="flex items-center gap-4 mb-6">
-            {/* Flex container for icon and title */}
-            <BuildingIcon className="w-12 h-12 text-blue-600" />
-            {/* Building icon with size and color */}
             <h1 className="text-4xl font-bold text-gray-800">StrataLink</h1>
-            {/* Main title with size and color */}
           </div>
           <p className="text-lg text-gray-600 text-center max-w-2xl">
-            {/* Description paragraph with styling */}
             Your comprehensive strata management portal for seamless property
             administration, maintenance coordination, and community engagement.
           </p>
         </header>
 
-        {/* Quick Actions Section */}
+        {/* Login Section */}
         <section className="mb-16">
-          {/* Section for quick actions with margin at the bottom */}
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6">Quick Actions</h2>
-          {/* Subheading for quick actions */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Grid layout for action cards */}
-            <ActionCard
-              icon={<PaymentIcon className="w-8 h-8" />}
-              title="Pay Fees"
-              description="View and pay your strata levies online"
-              href={PAYMENT_URL}
-              bgColor="bg-green-100"
-              textColor="text-green-600"
-            />
+          <h2 className="text-2xl font-semibold text-gray-800 mb-6">Login to Access Payment Section</h2>
+
+          <div className="grid grid-cols-1 gap-6">
+            {/* Login form */}
+            <form onSubmit={handleLogin} className="flex flex-col items-center">
+              <div className="mb-4">
+                <label htmlFor="password" className="block text-sm font-semibold text-gray-700">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="mt-2 p-2 border border-gray-300 rounded-md"
+                  required
+                  placeholder="Enter password"
+                />
+              </div>
+              <button type="submit" className="w-full py-2 mt-4 bg-blue-600 text-white rounded-md">
+                Login
+              </button>
+            </form>
+            {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>}
           </div>
         </section>
       </main>
