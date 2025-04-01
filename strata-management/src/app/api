@@ -1,11 +1,13 @@
-export async function POST(request: Request) { 
+import { NextResponse } from 'next/server';
+
+export async function POST(request) { 
     const { password } = await request.json(); // Get password from the request body
   
-    // Check if the password matches the environment variable
+    // Checking if the password matches the environment variable
     if (password === process.env.LOGIN_PASSWORD) {
-      return new Response(JSON.stringify({ success: true }), { status: 200 });
+      return NextResponse(JSON.stringify({ success: true }), { status: 200 });
     } else {
-      return new Response(JSON.stringify({ error: "Invalid password" }), { status: 401 });
+      return NextResponse(JSON.stringify({ error: "Invalid password" }), { status: 401 });
     }
   }
   
