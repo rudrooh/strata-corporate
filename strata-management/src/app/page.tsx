@@ -1,6 +1,7 @@
+"use client";
+
 import { useState } from "react"; // Import React hook for state management
 
-// ActionCardProps Interface for Login Card (reused as needed)
 interface ActionCardProps {
   title: string;
   description: string;
@@ -8,7 +9,6 @@ interface ActionCardProps {
   textColor: string;
 }
 
-// ActionCard component for reusable cards (updated for login)
 function ActionCard({ title, description, bgColor, textColor }: ActionCardProps) {
   return (
     <div className={`p-6 rounded-lg shadow-md ${bgColor} ${textColor} flex flex-col items-center text-center`}>
@@ -18,23 +18,30 @@ function ActionCard({ title, description, bgColor, textColor }: ActionCardProps)
   );
 }
 
-// Defining the Home component
 export default function Home() {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  // Handle form submission to check password
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
-    
-    // Mock password validation for illustration (replace with real API call)
-    if (password === "securePassword") {
-      // Redirect or show message if password is correct
+
+    // Make a request to the backend API for password validation
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ password }),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      // Redirect to the payment section if the password is correct
       alert("Login successful! Redirecting to payment section...");
-      window.location.href = "/payment"; // Example of redirect to the payment page
+      window.location.href = "/payment"; // Change to your actual payment route
     } else {
-      // Show error if password is incorrect
-      setErrorMessage("Invalid password. Please try again.");
+      setErrorMessage(result.error); // Show error message if invalid password
     }
   };
 
