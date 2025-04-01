@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { FaBuilding as BuildingIcon } from 'react-icons/fa';
 import { FaTools as MaintenanceIcon } from 'react-icons/fa';
 import { FaMoneyBillWave as PaymentIcon } from 'react-icons/fa';
