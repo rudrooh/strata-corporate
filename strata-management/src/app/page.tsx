@@ -65,6 +65,12 @@ export default function Home() {
 
           <div className="grid grid-cols-1 gap-6">
             {/* Login form */}
+            <ActionCard
+            title="Secure Login"
+            description="Please enter the password to access the payment section."
+            bgColor="bg-blue-100"
+            textColor="text-blue-600"
+            />
             <form onSubmit={handleLogin} className="flex flex-col items-center">
               <div className="mb-4">
                 <label htmlFor="password" className="block text-sm font-semibold text-gray-700">Password</label>
