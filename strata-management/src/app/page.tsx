@@ -2,7 +2,7 @@ import { FaBuilding as BuildingIcon } from "react-icons/fa"; // Importing the bu
 import { FaMoneyBillWave as PaymentIcon } from "react-icons/fa"; // Importing payment icon
 
 interface ActionCardProps {
-  icon: JSX.Element;
+  icon: React.ReactNode;
   title: string;
   description: string;
   href: string;
