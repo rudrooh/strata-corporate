@@ -1,4 +1,20 @@
-import { FaBuilding as BuildingIcon } from "react-icons/fa"; // Importing the building icon from react-icons
+import { FaBuilding as BuildingIcon } from "react-icons/fa";
+import { FaMoneyBillWave as PaymentIcon } from "react-icons/fa"; // Importing icons from react-icons library
+
+// ActionCard component that was being used but not defined
+const ActionCard = ({ icon, title, description, href, bgColor, textColor }) => {
+  return (
+    <a 
+      href={href} 
+      className={`block p-6 rounded-lg shadow-sm ${bgColor} hover:shadow-md transition-shadow`}
+    >
+      <div className={`${textColor} mb-3`}>{icon}</div>
+      <h3 className="text-xl font-medium text-gray-800 mb-2">{title}</h3>
+      <p className="text-gray-600">{description}</p>
+    </a>
+  );
+};
+
 // Defining the Home component, which is the main part of the application
 export default function Home() {
   return (
@@ -6,7 +22,7 @@ export default function Home() {
       {/* Outer div with minimum height, background color, padding, and font style */}
       <main className="max-w-4xl mx-auto">
         {/* Main content area with max width and centered */}
-
+        
         {/* Header Section */}
         <header className="flex flex-col items-center mb-12">
           {/* Header with flexbox for vertical alignment */}
@@ -23,6 +39,25 @@ export default function Home() {
             administration, maintenance coordination, and community engagement.
           </p>
         </header>
+
+        {/* Quick Actions Section - Fixed placement and syntax */}
+        <section className="mb-16">
+          {/* Section for quick actions with margin at the bottom */}
+          <h2 className="text-2xl font-semibold text-gray-800 mb-6">Quick Actions</h2>
+          {/* Subheading for quick actions*/}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Grid layout for action cards*/}
+            <ActionCard
+              icon={<PaymentIcon className="w-8 h-8" />}
+              title="Pay Fees"
+              description="View and pay your strata levies online"
+              href="/payments"
+              bgColor="bg-green-100"
+              textColor="text-green-600"
+            />
+            {/* You can add more ActionCard components here as needed */}
+          </div>
+        </section>
       </main>
     </div>
   );
