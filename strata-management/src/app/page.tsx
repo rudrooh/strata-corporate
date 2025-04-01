@@ -1,7 +1,4 @@
 import { FaBuilding as BuildingIcon } from "react-icons/fa"; // Importing the building icon from react-icons
-import { FaTools as MaintenanceIcon } from "react-icons/fa"; // Importing the maintenance icon
-import { FaMoneyBillWave as PaymentIcon } from "react-icons/fa"; // Importing the payment icon
-
 // Defining the Home component, which is the main part of the application
 export default function Home() {
   return (
