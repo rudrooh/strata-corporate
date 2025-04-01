@@ -2,13 +2,16 @@ import { FaBuilding as BuildingIcon } from "react-icons/fa"; // Importing the bu
 import { FaMoneyBillWave as PaymentIcon } from "react-icons/fa"; // Importing payment icon
 
 interface ActionCardProps {
-  icon: React.ReactNode;
+  icon: JSX.Element;
   title: string;
   description: string;
   href: string;
   bgColor: string;
   textColor: string;
 }
+
+// Retrieve payment URL from environment variables
+const PAYMENT_URL = process.env.NEXT_PUBLIC_PAYMENT_URL || "/payments";
 
 // ActionCard component for reusable quick action cards
 function ActionCard({ icon, title, description, href, bgColor, textColor }: ActionCardProps) {
@@ -57,7 +60,7 @@ export default function Home() {
               icon={<PaymentIcon className="w-8 h-8" />}
               title="Pay Fees"
               description="View and pay your strata levies online"
-              href="/payments"
+              href={PAYMENT_URL}
               bgColor="bg-green-100"
               textColor="text-green-600"
             />
