@@ -51,7 +51,14 @@ export default function Home() {
         {/* Header Section */}
         <header className="flex flex-col items-center mb-12">
           <div className="flex items-center gap-4 mb-6">
+            {/* StrataLink Title */}
             <h1 className="text-4xl font-bold text-gray-800">StrataLink</h1>
+            {/* Image beside the title */}
+            <img
+              src="/images/building.svg"  // Image path
+              alt="Building"
+              className="w-12 h-12"  // Adjust the size of the image
+            />
           </div>
           <p className="text-lg text-gray-600 text-center max-w-2xl">
             Your comprehensive strata management portal for seamless property
@@ -66,10 +73,10 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-6">
             {/* Login form */}
             <ActionCard
-            title="Secure Login"
-            description="Please enter the password to access the payment section."
-            bgColor="bg-blue-100"
-            textColor="text-blue-600"
+              title="Secure Login"
+              description="Please enter the password to access the payment section."
+              bgColor="bg-blue-100"
+              textColor="text-blue-600"
             />
             <form onSubmit={handleLogin} className="flex flex-col items-center">
               <div className="mb-4">
