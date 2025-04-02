@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 p-8 pb-20 font-sans">
@@ -11,13 +9,6 @@ export default function Home() {
           <div className="flex items-center gap-4 mb-6">
             {/* StrataLink Title */}
             <h1 className="text-4xl font-bold text-gray-800">StrataLink</h1>
-            {/* Image beside the title */}
-            <Image
-              src="/images/building.svg"  // Image path
-              alt="Building"
-              width={48} 
-              height={48} 
-            />
           </div>
           <p className="text-lg text-gray-600 text-center max-w-2xl">
             Your comprehensive strata management portal for seamless property
