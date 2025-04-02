@@ -10,7 +10,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         } else {
             return NextResponse.json({ error: "Invalid password" }, { status: 401 });
         }
-    } catch (error) {
+    } catch (_error) { // Using `_error` to prevent ESLint warning
         return NextResponse.json({ error: "Invalid request" }, { status: 400 });
     }
-}
+}git
