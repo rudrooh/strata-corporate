@@ -1,22 +1,6 @@
 "use client";
 
-import { useState } from "react"; // Import React hook for state management
-
-interface ActionCardProps {
-  title: string;
-  description: string;
-  bgColor: string;
-  textColor: string;
-}
-
-function ActionCard({ title, description, bgColor, textColor }: ActionCardProps) {
-  return (
-    <div className={`p-6 rounded-lg shadow-md ${bgColor} ${textColor} flex flex-col items-center text-center`}>
-      <h3 className="text-xl font-semibold">{title}</h3>
-      <p className="text-sm mt-2">{description}</p>
-    </div>
-  );
-}
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -28,10 +12,11 @@ export default function Home() {
             {/* StrataLink Title */}
             <h1 className="text-4xl font-bold text-gray-800">StrataLink</h1>
             {/* Image beside the title */}
-            <img
+            <Image
               src="/images/building.svg"  // Image path
               alt="Building"
-              className="w-12 h-12"  // Adjust the size of the image
+              width={48} 
+              height={48} 
             />
           </div>
           <p className="text-lg text-gray-600 text-center max-w-2xl">
