@@ -3,6 +3,9 @@
 import Image from "next/image";
 
 export default function Home() {
+  // Fetch the API URL from the environment variable
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
   return (
     <div className="min-h-screen bg-gray-50 p-8 pb-20 font-sans">
       <main className="max-w-4xl mx-auto">
@@ -24,6 +27,13 @@ export default function Home() {
             administration, maintenance coordination, and community engagement.
           </p>
         </header>
+
+        {/* Example display of the API URL */}
+        <div className="mt-8 text-center">
+          <p className="text-lg text-gray-600">
+            The API URL for your service is: <strong>{apiUrl}</strong>
+          </p>
+        </div>
       </main>
     </div>
   );
