@@ -19,32 +19,6 @@ function ActionCard({ title, description, bgColor, textColor }: ActionCardProps)
 }
 
 export default function Home() {
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const handleLogin = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    // Make a request to the backend API for password validation
-    const response = await fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ password }),
-    });
-
-    const result = await response.json();
-
-    if (response.ok) {
-      // Redirect to the payment section if the password is correct
-      alert("Login successful! Redirecting to payment section...");
-      window.location.href = "/payment"; // Change to your actual payment route
-    } else {
-      setErrorMessage(result.error); // Show error message if invalid password
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gray-50 p-8 pb-20 font-sans">
       <main className="max-w-4xl mx-auto">
@@ -65,40 +39,6 @@ export default function Home() {
             administration, maintenance coordination, and community engagement.
           </p>
         </header>
-
-        {/* Login Section */}
-        <section className="mb-16">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">Login to Access Payment Section</h2>
-
-          <div className="grid grid-cols-1 gap-6">
-            {/* Login form */}
-            <ActionCard
-              title="Secure Login"
-              description="Please enter the password to access the payment section."
-              bgColor="bg-blue-100"
-              textColor="text-blue-600"
-            />
-            <form onSubmit={handleLogin} className="flex flex-col items-center">
-              <div className="mb-4">
-                <label htmlFor="password" className="block text-sm font-semibold text-gray-700">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="mt-2 p-2 border border-gray-300 rounded-md"
-                  required
-                  placeholder="Enter password"
-                />
-              </div>
-              <button type="submit" className="w-full py-2 mt-4 bg-blue-600 text-white rounded-md">
-                Login
-              </button>
-            </form>
-            {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>}
-          </div>
-        </section>
       </main>
     </div>
   );
